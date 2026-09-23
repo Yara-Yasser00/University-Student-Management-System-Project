@@ -4,9 +4,13 @@
 ### Project Information
 
 **Project:** University Student Management System
+
 **Course:** Software Engineering
+
 **Academic Year:** 2026
+
 **Team:** Zomoroda
+
 **Team Size:** 10 Members
 
 ### Team Members
