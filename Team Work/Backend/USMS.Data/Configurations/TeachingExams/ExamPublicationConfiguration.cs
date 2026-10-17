@@ -12,7 +12,7 @@ public class ExamPublicationConfiguration : IEntityTypeConfiguration<ExamPublica
         builder.ToTable("ExamPublication");
         builder.HasKey(e => new { e.CollegeCode, e.TermID, e.ExamType });
         builder.Property(e => e.CollegeCode).HasMaxLength(10);
-        builder.Property(e => e.ExamType).HasMaxLength(10);
+        builder.Property(e => e.ExamType).HasConversion<string>().HasMaxLength(10);
 
         // Relationships (from the ERD). Records are never deleted (status changes only),
         // so every foreign key uses Restrict. This also avoids multiple cascade paths.

@@ -12,7 +12,7 @@ public class SchedulePublicationConfiguration : IEntityTypeConfiguration<Schedul
         builder.ToTable("SchedulePublication");
         builder.HasKey(e => new { e.CollegeCode, e.TermID, e.Level });
         builder.Property(e => e.CollegeCode).HasMaxLength(10);
-        builder.Property(e => e.Level).HasMaxLength(10);
+        builder.Property(e => e.Level).HasConversion<string>().HasMaxLength(10);
 
         // Relationships (from the ERD). Records are never deleted (status changes only),
         // so every foreign key uses Restrict. This also avoids multiple cascade paths.

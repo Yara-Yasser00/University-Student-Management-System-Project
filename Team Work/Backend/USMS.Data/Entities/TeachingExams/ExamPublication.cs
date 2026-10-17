@@ -1,3 +1,5 @@
+using USMS.Data.Enums;
+
 namespace USMS.Data.Entities;
 
 // Owner: Group 5 (Teaching & Exams)
@@ -7,7 +9,7 @@ public class ExamPublication
     // Primary key
     public string CollegeCode { get; set; } = null!;
     public int TermID { get; set; }
-    public string ExamType { get; set; } = null!;
+    public ExamType ExamType { get; set; }
 
     // TODO Group 5 (Teaching & Exams): add the remaining columns from the ERD.
 

@@ -1,3 +1,5 @@
+using USMS.Data.Enums;
+
 namespace USMS.Data.Entities;
 
 // Owner: Group 3 (Catalogue & Schedule)
@@ -7,7 +9,7 @@ public class SchedulePublication
     // Primary key
     public string CollegeCode { get; set; } = null!;
     public int TermID { get; set; }
-    public string Level { get; set; } = null!;
+    public AcademicLevel Level { get; set; }
 
     // TODO Group 3 (Catalogue & Schedule): add the remaining columns from the ERD.
 
