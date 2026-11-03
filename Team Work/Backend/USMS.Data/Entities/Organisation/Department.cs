@@ -18,5 +18,5 @@ public class Department
     public Staff? HeadStaff { get; set; }
     public ICollection<Student> Students { get; set; } = new List<Student>();
     public ICollection<Staff> StaffMembers { get; set; } = new List<Staff>();
-    public ICollection<Course> Courses { get; set; } = new List<Course>();
+    public ICollection<DepartmentCourse> DepartmentCourses { get; set; } = new List<DepartmentCourse>();
 }

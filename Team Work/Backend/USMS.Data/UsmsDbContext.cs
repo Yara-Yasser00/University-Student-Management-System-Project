@@ -33,6 +33,7 @@ public class UsmsDbContext : DbContext
     public DbSet<CourseOffering> CourseOfferings => Set<CourseOffering>();
     public DbSet<ClassGroup> ClassGroups => Set<ClassGroup>();
     public DbSet<SchedulePublication> SchedulePublications => Set<SchedulePublication>();
+    public DbSet<DepartmentCourse> DepartmentCourses => Set<DepartmentCourse>();
 
     // Group 4: Registration
     public DbSet<RegistrationPeriod> RegistrationPeriods => Set<RegistrationPeriod>();

@@ -16,6 +16,8 @@ public class College
     public Staff? DeanStaff { get; set; }
     public ICollection<CreditLoadRule> CreditLoadRules { get; set; } = new List<CreditLoadRule>();
     public ICollection<Department> Departments { get; set; } = new List<Department>();
+    public ICollection<Student> Students { get; set; } = new List<Student>();
+    public ICollection<Course> Courses { get; set; } = new List<Course>();
     public ICollection<Room> Rooms { get; set; } = new List<Room>();
     public ICollection<CollegeAdmin> CollegeAdmins { get; set; } = new List<CollegeAdmin>();
     public ICollection<SchedulePublication> SchedulePublications { get; set; } = new List<SchedulePublication>();

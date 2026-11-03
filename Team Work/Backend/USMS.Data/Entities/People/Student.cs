@@ -8,13 +8,15 @@ public class Student : Person
     // In the database it is stored as column "StudentID".
 
     // Foreign keys
-    public int DepartmentID { get; set; }
+    public string CollegeCode { get; set; } = null!;
+    public int? DepartmentID { get; set; }   // NULL in years 1–2 (General Division)
     public int? AdvisorStaffID { get; set; }
 
     // TODO Group 2 (People): add the remaining columns from the ERD.
 
     // Navigation properties
-    public Department Department { get; set; } = null!;
+    public College College { get; set; } = null!;
+    public Department? Department { get; set; }
     public Staff? AdvisorStaff { get; set; }
     public ICollection<RegistrationForm> RegistrationForms { get; set; } = new List<RegistrationForm>();
     public ICollection<Enrollment> Enrollments { get; set; } = new List<Enrollment>();

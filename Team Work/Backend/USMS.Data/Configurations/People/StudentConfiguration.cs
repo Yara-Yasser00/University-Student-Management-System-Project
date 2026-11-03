@@ -11,9 +11,18 @@ public class StudentConfiguration : IEntityTypeConfiguration<Student>
     {
         builder.ToTable("Student", t => t.Property(e => e.PersonID).HasColumnName("StudentID"));
 
+        // String foreign keys must have the same length as the key they point to.
+        builder.Property(e => e.CollegeCode).HasMaxLength(10);
+
         // Relationships (from the ERD). Records are never deleted (status changes only),
         // so every foreign key uses Restrict. This also avoids multiple cascade paths.
-        // R7: Student.DepartmentID → Department
+        // R39 (new): College enrolls Student — Student.CollegeCode → College
+        builder.HasOne(e => e.College)
+               .WithMany(p => p.Students)
+               .HasForeignKey(e => e.CollegeCode)
+               .OnDelete(DeleteBehavior.Restrict);
+
+        // R7: Student.DepartmentID → Department (NULL in years 1–2, so Partial on the Student side)
         builder.HasOne(e => e.Department)
                .WithMany(p => p.Students)
                .HasForeignKey(e => e.DepartmentID)
