@@ -1,7 +1,10 @@
+using USMS.Data.Enums;
+
 namespace USMS.Data.Entities;
 
 // Owner: Group 2 (People)
 // Table: Staff — see "USMS - Database Design Documentation", section 5.
+// Instructors and teaching assistants (StaffType tells them apart).
 public class Staff : Person
 {
     // Primary key is inherited from Person (PersonID).
@@ -10,7 +13,12 @@ public class Staff : Person
     // Foreign keys
     public int DepartmentID { get; set; }
 
-    // TODO Group 2 (People): add the remaining columns from the ERD.
+    // Columns
+    public StaffType StaffType { get; set; }
+    public AcademicRank AcademicRank { get; set; }
+    public string? Specialization { get; set; }
+    public string? Office { get; set; }
+    public EntityStatus Status { get; set; }
 
     // Navigation properties
     public Department Department { get; set; } = null!;

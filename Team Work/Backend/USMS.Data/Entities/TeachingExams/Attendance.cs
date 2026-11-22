@@ -1,3 +1,5 @@
+using USMS.Data.Enums;
+
 namespace USMS.Data.Entities;
 
 // Owner: Group 5 (Teaching & Exams)
@@ -11,7 +13,9 @@ public class Attendance
     // Foreign keys
     public int RecordedByStaffID { get; set; }
 
-    // TODO Group 5 (Teaching & Exams): add the remaining columns from the ERD.
+    // Columns
+    public AttendanceStatus Status { get; set; }
+    public DateTime RecordedAt { get; set; }
 
     // Navigation properties
     public ClassSession Session { get; set; } = null!;

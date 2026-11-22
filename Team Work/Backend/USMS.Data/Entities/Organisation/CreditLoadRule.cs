@@ -10,7 +10,10 @@ public class CreditLoadRule
     // Foreign keys
     public string CollegeCode { get; set; } = null!;
 
-    // TODO Group 1 (Organisation & Lookups): add the remaining columns from the ERD.
+    // Columns
+    public decimal MinGPA { get; set; }
+    public decimal MaxGPA { get; set; }
+    public byte MaxCreditHours { get; set; }
 
     // Navigation properties
     public College College { get; set; } = null!;

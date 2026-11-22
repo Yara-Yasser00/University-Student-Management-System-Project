@@ -12,7 +12,14 @@ public class AcademicTermConfiguration : IEntityTypeConfiguration<AcademicTerm>
         builder.ToTable("AcademicTerm");
         builder.HasKey(e => e.TermID);
 
-        // TODO Group 3 (Catalogue & Schedule): remaining columns (types, lengths, NULL),
-        // unique indexes, defaults and seed data, as in the ERD.
+        // Columns
+        builder.Property(e => e.AcademicYear).HasMaxLength(9);                      // e.g. 2026/2027
+        builder.Property(e => e.TermName).HasConversion<string>().HasMaxLength(10); // TermName
+
+        // Unique indexes: only one current term.
+        // Other terms (IsCurrent = 0) are allowed (the filter skips them).
+        builder.HasIndex(e => e.IsCurrent)
+               .IsUnique()
+               .HasFilter("[IsCurrent] = 1");
     }
 }

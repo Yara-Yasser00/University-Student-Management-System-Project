@@ -12,7 +12,15 @@ public class Enrollment
     public int OfferingID { get; set; }
     public int? GroupID { get; set; }
 
-    // TODO Group 4 (Registration): add the remaining columns from the ERD.
+    // Columns
+    public DateTime RegisteredAt { get; set; }
+
+    // Marks (NULL until entered by the instructor).
+    public decimal? AttendanceMark { get; set; }   // out of 10
+    public decimal? PracticalMark { get; set; }    // out of 20
+    public decimal? MidtermMark { get; set; }      // out of 30
+    public decimal? OralMark { get; set; }         // out of 10
+    public decimal? FinalMark { get; set; }        // out of 30
 
     // Navigation properties
     public Student Student { get; set; } = null!;

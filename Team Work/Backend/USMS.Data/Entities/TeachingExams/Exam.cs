@@ -1,3 +1,5 @@
+using USMS.Data.Enums;
+
 namespace USMS.Data.Entities;
 
 // Owner: Group 5 (Teaching & Exams)
@@ -12,7 +14,12 @@ public class Exam
     public string RoomCode { get; set; } = null!;
     public int HeadStaffID { get; set; }
 
-    // TODO Group 5 (Teaching & Exams): add the remaining columns from the ERD.
+    // Columns
+    public ExamType ExamType { get; set; }
+    public DateOnly ExamDate { get; set; }
+    public TimeOnly StartTime { get; set; }
+    public TimeOnly EndTime { get; set; }
+    public string CommitteeName { get; set; } = null!;
 
     // Navigation properties
     public CourseOffering Offering { get; set; } = null!;

@@ -25,8 +25,5 @@ public class CoursePrerequisiteConfiguration : IEntityTypeConfiguration<CoursePr
                .WithMany(p => p.RequiredFor)
                .HasForeignKey(e => e.PrerequisiteCourseID)
                .OnDelete(DeleteBehavior.Restrict);
-
-        // TODO Group 3 (Catalogue & Schedule): remaining columns (types, lengths, NULL),
-        // unique indexes, defaults and seed data, as in the ERD.
     }
 }

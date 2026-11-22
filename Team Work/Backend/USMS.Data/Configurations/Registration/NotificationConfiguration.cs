@@ -15,6 +15,10 @@ public class NotificationConfiguration : IEntityTypeConfiguration<Notification>
         // String foreign keys must have the same length as the key they point to.
         builder.Property(e => e.LoginID).HasMaxLength(20);
 
+        // Columns
+        builder.Property(e => e.Title).HasMaxLength(150);
+        builder.Property(e => e.Body).HasMaxLength(500);
+
         // Relationships (from the ERD). Records are never deleted (status changes only),
         // so every foreign key uses Restrict. This also avoids multiple cascade paths.
         // R38: Notification.LoginID → UserAccount
@@ -22,8 +26,5 @@ public class NotificationConfiguration : IEntityTypeConfiguration<Notification>
                .WithMany(p => p.Notifications)
                .HasForeignKey(e => e.LoginID)
                .OnDelete(DeleteBehavior.Restrict);
-
-        // TODO Group 4 (Registration): remaining columns (types, lengths, NULL),
-        // unique indexes, defaults and seed data, as in the ERD.
     }
 }

@@ -12,6 +12,13 @@ public class RegistrationFormConfiguration : IEntityTypeConfiguration<Registrati
         builder.ToTable("RegistrationForm");
         builder.HasKey(e => e.FormID);
 
+        // Columns
+        builder.Property(e => e.Decision).HasConversion<string>().HasMaxLength(20);     // AdvisorDecision
+        builder.Property(e => e.AdvisorNote).HasMaxLength(500);
+
+        // Unique indexes: one registration form per student per term.
+        builder.HasIndex(e => new { e.StudentID, e.TermID }).IsUnique();
+
         // Relationships (from the ERD). Records are never deleted (status changes only),
         // so every foreign key uses Restrict. This also avoids multiple cascade paths.
         // R25: RegistrationForm.StudentID → Student
@@ -31,8 +38,5 @@ public class RegistrationFormConfiguration : IEntityTypeConfiguration<Registrati
                .WithMany(p => p.ReviewedRegistrationForms)
                .HasForeignKey(e => e.AdvisorStaffID)
                .OnDelete(DeleteBehavior.Restrict);
-
-        // TODO Group 4 (Registration): remaining columns (types, lengths, NULL),
-        // unique indexes, defaults and seed data, as in the ERD.
     }
 }

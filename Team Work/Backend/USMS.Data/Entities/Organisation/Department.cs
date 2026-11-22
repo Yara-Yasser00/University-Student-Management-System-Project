@@ -1,3 +1,5 @@
+using USMS.Data.Enums;
+
 namespace USMS.Data.Entities;
 
 // Owner: Group 1 (Organisation & Lookups)
@@ -11,7 +13,10 @@ public class Department
     public string CollegeCode { get; set; } = null!;
     public int? HeadStaffID { get; set; }
 
-    // TODO Group 1 (Organisation & Lookups): add the remaining columns from the ERD.
+    // Columns
+    public string Code { get; set; } = null!;
+    public string Name { get; set; } = null!;
+    public EntityStatus Status { get; set; }
 
     // Navigation properties
     public College College { get; set; } = null!;

@@ -15,6 +15,13 @@ public class ClassGroupConfiguration : IEntityTypeConfiguration<ClassGroup>
         // String foreign keys must have the same length as the key they point to.
         builder.Property(e => e.RoomCode).HasMaxLength(30);
 
+        // Columns
+        builder.Property(e => e.GroupType).HasConversion<string>().HasMaxLength(10);    // GroupType
+        builder.Property(e => e.Day).HasConversion<string>().HasMaxLength(3);           // WeekDay
+
+        // Unique indexes: the group number is unique within the offering.
+        builder.HasIndex(e => new { e.OfferingID, e.GroupNumber }).IsUnique();
+
         // Relationships (from the ERD). Records are never deleted (status changes only),
         // so every foreign key uses Restrict. This also avoids multiple cascade paths.
         // R19: ClassGroup.OfferingID → CourseOffering
@@ -34,8 +41,5 @@ public class ClassGroupConfiguration : IEntityTypeConfiguration<ClassGroup>
                .WithMany(p => p.ClassGroups)
                .HasForeignKey(e => e.RoomCode)
                .OnDelete(DeleteBehavior.Restrict);
-
-        // TODO Group 3 (Catalogue & Schedule): remaining columns (types, lengths, NULL),
-        // unique indexes, defaults and seed data, as in the ERD.
     }
 }

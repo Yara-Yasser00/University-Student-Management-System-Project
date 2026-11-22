@@ -1,3 +1,5 @@
+using USMS.Data.Enums;
+
 namespace USMS.Data.Entities;
 
 // Owner: Group 1 (Organisation & Lookups)
@@ -10,7 +12,23 @@ public class College
     // Foreign keys
     public int? DeanStaffID { get; set; }
 
-    // TODO Group 1 (Organisation & Lookups): add the remaining columns from the ERD.
+    // Columns
+    public string NameEn { get; set; } = null!;
+    public string NameAr { get; set; } = null!;
+    public short EstablishedYear { get; set; }
+    public string? LogoUrl { get; set; }
+    public string? PhotoUrl { get; set; }
+    public EntityStatus Status { get; set; }
+
+    // Academic rules of the college (minimum earned credit hours for each level).
+    public byte SophomoreCredits { get; set; }
+    public byte JuniorCredits { get; set; }
+    public byte SeniorCredits { get; set; }
+    public byte GraduationCredits { get; set; }
+
+    // Attendance rules (percentages, used for the warning and for exam deprivation).
+    public byte AttendanceWarningPct { get; set; }
+    public byte ExamDeprivationPct { get; set; }
 
     // Navigation properties
     public Staff? DeanStaff { get; set; }

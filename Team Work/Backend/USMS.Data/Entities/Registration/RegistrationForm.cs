@@ -1,3 +1,5 @@
+using USMS.Data.Enums;
+
 namespace USMS.Data.Entities;
 
 // Owner: Group 4 (Registration)
@@ -12,7 +14,11 @@ public class RegistrationForm
     public int TermID { get; set; }
     public int? AdvisorStaffID { get; set; }
 
-    // TODO Group 4 (Registration): add the remaining columns from the ERD.
+    // Columns
+    public DateTime SavedAt { get; set; }
+    public AdvisorDecision Decision { get; set; }
+    public string? AdvisorNote { get; set; }
+    public DateTime? DecidedAt { get; set; }
 
     // Navigation properties
     public Student Student { get; set; } = null!;

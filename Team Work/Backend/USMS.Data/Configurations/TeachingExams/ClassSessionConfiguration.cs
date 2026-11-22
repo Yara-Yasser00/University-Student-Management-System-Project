@@ -25,8 +25,5 @@ public class ClassSessionConfiguration : IEntityTypeConfiguration<ClassSession>
                .WithMany(p => p.ClassSessions)
                .HasForeignKey(e => e.GroupID)
                .OnDelete(DeleteBehavior.Restrict);
-
-        // TODO Group 5 (Teaching & Exams): remaining columns (types, lengths, NULL),
-        // unique indexes, defaults and seed data, as in the ERD.
     }
 }

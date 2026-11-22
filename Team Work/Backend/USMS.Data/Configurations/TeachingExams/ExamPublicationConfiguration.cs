@@ -14,6 +14,9 @@ public class ExamPublicationConfiguration : IEntityTypeConfiguration<ExamPublica
         builder.Property(e => e.CollegeCode).HasMaxLength(10);
         builder.Property(e => e.ExamType).HasConversion<string>().HasMaxLength(10);
 
+        // Columns
+        builder.Property(e => e.Status).HasConversion<string>().HasMaxLength(20);       // PublicationStatus
+
         // Relationships (from the ERD). Records are never deleted (status changes only),
         // so every foreign key uses Restrict. This also avoids multiple cascade paths.
         // R36: ExamPublication.CollegeCode → College
@@ -27,8 +30,5 @@ public class ExamPublicationConfiguration : IEntityTypeConfiguration<ExamPublica
                .WithMany(p => p.ExamPublications)
                .HasForeignKey(e => e.TermID)
                .OnDelete(DeleteBehavior.Restrict);
-
-        // TODO Group 5 (Teaching & Exams): remaining columns (types, lengths, NULL),
-        // unique indexes, defaults and seed data, as in the ERD.
     }
 }

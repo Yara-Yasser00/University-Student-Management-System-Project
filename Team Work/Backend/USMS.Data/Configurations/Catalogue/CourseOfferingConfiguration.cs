@@ -15,6 +15,14 @@ public class CourseOfferingConfiguration : IEntityTypeConfiguration<CourseOfferi
         // String foreign keys must have the same length as the key they point to.
         builder.Property(e => e.LectureRoomCode).HasMaxLength(30);
 
+        // Columns
+        builder.Property(e => e.LectureDay).HasConversion<string>().HasMaxLength(3);    // WeekDay
+        builder.Property(e => e.ResultStatus).HasConversion<string>().HasMaxLength(10); // ResultStatus
+        builder.Property(e => e.ReturnReason).HasMaxLength(300);
+
+        // Unique indexes: a course is offered once per term.
+        builder.HasIndex(e => new { e.CourseID, e.TermID }).IsUnique();
+
         // Relationships (from the ERD). Records are never deleted (status changes only),
         // so every foreign key uses Restrict. This also avoids multiple cascade paths.
         // R15: CourseOffering.CourseID → Course
@@ -52,8 +60,5 @@ public class CourseOfferingConfiguration : IEntityTypeConfiguration<CourseOfferi
                .WithMany(p => p.PublishedOfferings)
                .HasForeignKey(e => e.PublishedByAdminID)
                .OnDelete(DeleteBehavior.Restrict);
-
-        // TODO Group 3 (Catalogue & Schedule): remaining columns (types, lengths, NULL),
-        // unique indexes, defaults and seed data, as in the ERD.
     }
 }

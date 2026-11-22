@@ -15,6 +15,13 @@ public class ExamConfiguration : IEntityTypeConfiguration<Exam>
         // String foreign keys must have the same length as the key they point to.
         builder.Property(e => e.RoomCode).HasMaxLength(30);
 
+        // Columns
+        builder.Property(e => e.ExamType).HasConversion<string>().HasMaxLength(10);     // ExamType
+        builder.Property(e => e.CommitteeName).HasMaxLength(100);
+
+        // Unique indexes: one midterm and one final per offering.
+        builder.HasIndex(e => new { e.OfferingID, e.ExamType }).IsUnique();
+
         // Relationships (from the ERD). Records are never deleted (status changes only),
         // so every foreign key uses Restrict. This also avoids multiple cascade paths.
         // R33: Exam.OfferingID → CourseOffering
@@ -34,8 +41,5 @@ public class ExamConfiguration : IEntityTypeConfiguration<Exam>
                .WithMany(p => p.HeadedExams)
                .HasForeignKey(e => e.HeadStaffID)
                .OnDelete(DeleteBehavior.Restrict);
-
-        // TODO Group 5 (Teaching & Exams): remaining columns (types, lengths, NULL),
-        // unique indexes, defaults and seed data, as in the ERD.
     }
 }

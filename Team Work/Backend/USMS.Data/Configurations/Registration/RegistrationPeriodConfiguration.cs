@@ -13,6 +13,9 @@ public class RegistrationPeriodConfiguration : IEntityTypeConfiguration<Registra
         builder.HasKey(e => new { e.CollegeCode, e.TermID });
         builder.Property(e => e.CollegeCode).HasMaxLength(10);
 
+        // Columns
+        builder.Property(e => e.ManualOverride).HasConversion<string>().HasMaxLength(15); // ManualOverride
+
         // Relationships (from the ERD). Records are never deleted (status changes only),
         // so every foreign key uses Restrict. This also avoids multiple cascade paths.
         // R23: RegistrationPeriod.CollegeCode → College
@@ -26,8 +29,5 @@ public class RegistrationPeriodConfiguration : IEntityTypeConfiguration<Registra
                .WithMany(p => p.RegistrationPeriods)
                .HasForeignKey(e => e.TermID)
                .OnDelete(DeleteBehavior.Restrict);
-
-        // TODO Group 4 (Registration): remaining columns (types, lengths, NULL),
-        // unique indexes, defaults and seed data, as in the ERD.
     }
 }

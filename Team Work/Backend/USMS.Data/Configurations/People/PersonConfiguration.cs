@@ -16,7 +16,19 @@ public class PersonConfiguration : IEntityTypeConfiguration<Person>
         // each class gets its own table that shares the same key (TPT).
         builder.UseTptMappingStrategy();
 
-        // TODO Group 2 (People): remaining columns (types, lengths, NULL),
-        // unique indexes, defaults and seed data, as in the ERD.
+        // Columns
+        builder.Property(e => e.NameEn).HasMaxLength(150);
+        builder.Property(e => e.NameAr).HasMaxLength(150);
+        builder.Property(e => e.Gender).HasMaxLength(10);
+        builder.Property(e => e.Nationality).HasMaxLength(50);
+        builder.Property(e => e.NationalID).HasMaxLength(14);
+        builder.Property(e => e.PlaceOfBirth).HasMaxLength(100);
+        builder.Property(e => e.Mobile).HasMaxLength(20);
+        builder.Property(e => e.Address).HasMaxLength(250);
+        builder.Property(e => e.EmergencyName).HasMaxLength(150);
+        builder.Property(e => e.EmergencyPhone).HasMaxLength(20);
+
+        // Unique indexes
+        builder.HasIndex(e => e.NationalID).IsUnique();
     }
 }

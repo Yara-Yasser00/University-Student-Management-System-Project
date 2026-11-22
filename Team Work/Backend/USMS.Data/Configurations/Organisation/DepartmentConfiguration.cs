@@ -15,6 +15,14 @@ public class DepartmentConfiguration : IEntityTypeConfiguration<Department>
         // String foreign keys must have the same length as the key they point to.
         builder.Property(e => e.CollegeCode).HasMaxLength(10);
 
+        // Columns
+        builder.Property(e => e.Code).HasMaxLength(10);
+        builder.Property(e => e.Name).HasMaxLength(150);
+        builder.Property(e => e.Status).HasConversion<string>().HasMaxLength(10);   // EntityStatus
+
+        // Unique indexes: the department code is unique within its college.
+        builder.HasIndex(e => new { e.CollegeCode, e.Code }).IsUnique();
+
         // Relationships (from the ERD). Records are never deleted (status changes only),
         // so every foreign key uses Restrict. This also avoids multiple cascade paths.
         // R1: Department.CollegeCode → College
@@ -28,8 +36,5 @@ public class DepartmentConfiguration : IEntityTypeConfiguration<Department>
                .WithOne(p => p.HeadOfDepartment)
                .HasForeignKey<Department>(e => e.HeadStaffID)
                .OnDelete(DeleteBehavior.Restrict);
-
-        // TODO Group 1 (Organisation & Lookups): remaining columns (types, lengths, NULL),
-        // unique indexes, defaults and seed data, as in the ERD.
     }
 }

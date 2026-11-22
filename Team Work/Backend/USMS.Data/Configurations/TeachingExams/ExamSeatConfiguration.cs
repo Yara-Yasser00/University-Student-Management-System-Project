@@ -12,6 +12,12 @@ public class ExamSeatConfiguration : IEntityTypeConfiguration<ExamSeat>
         builder.ToTable("ExamSeat");
         builder.HasKey(e => new { e.ExamID, e.EnrollmentID });
 
+        // Columns
+        builder.Property(e => e.SeatNumber).HasMaxLength(10);
+
+        // Unique indexes: the seat number is unique within the exam.
+        builder.HasIndex(e => new { e.ExamID, e.SeatNumber }).IsUnique();
+
         // Relationships (from the ERD). Records are never deleted (status changes only),
         // so every foreign key uses Restrict. This also avoids multiple cascade paths.
         // R28: ExamSeat.ExamID → Exam
@@ -25,8 +31,5 @@ public class ExamSeatConfiguration : IEntityTypeConfiguration<ExamSeat>
                .WithMany(p => p.ExamSeats)
                .HasForeignKey(e => e.EnrollmentID)
                .OnDelete(DeleteBehavior.Restrict);
-
-        // TODO Group 5 (Teaching & Exams): remaining columns (types, lengths, NULL),
-        // unique indexes, defaults and seed data, as in the ERD.
     }
 }

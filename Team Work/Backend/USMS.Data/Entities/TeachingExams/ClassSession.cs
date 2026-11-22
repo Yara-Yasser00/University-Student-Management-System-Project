@@ -11,7 +11,9 @@ public class ClassSession
     public int OfferingID { get; set; }
     public int? GroupID { get; set; }
 
-    // TODO Group 5 (Teaching & Exams): add the remaining columns from the ERD.
+    // Columns
+    public byte SessionNumber { get; set; }
+    public DateOnly SessionDate { get; set; }
 
     // Navigation properties
     public CourseOffering Offering { get; set; } = null!;

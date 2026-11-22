@@ -12,6 +12,9 @@ public class AttendanceConfiguration : IEntityTypeConfiguration<Attendance>
         builder.ToTable("Attendance");
         builder.HasKey(e => new { e.SessionID, e.EnrollmentID });
 
+        // Columns
+        builder.Property(e => e.Status).HasConversion<string>().HasMaxLength(10);       // AttendanceStatus
+
         // Relationships (from the ERD). Records are never deleted (status changes only),
         // so every foreign key uses Restrict. This also avoids multiple cascade paths.
         // R27: Attendance.SessionID → ClassSession
@@ -31,8 +34,5 @@ public class AttendanceConfiguration : IEntityTypeConfiguration<Attendance>
                .WithMany(p => p.RecordedAttendances)
                .HasForeignKey(e => e.RecordedByStaffID)
                .OnDelete(DeleteBehavior.Restrict);
-
-        // TODO Group 5 (Teaching & Exams): remaining columns (types, lengths, NULL),
-        // unique indexes, defaults and seed data, as in the ERD.
     }
 }

@@ -1,3 +1,5 @@
+using USMS.Data.Enums;
+
 namespace USMS.Data.Entities;
 
 // Owner: Group 1 (Organisation & Lookups)
@@ -10,7 +12,15 @@ public class Permission
     // Foreign keys
     public int? UpdatedByAdminID { get; set; }
 
-    // TODO Group 1 (Organisation & Lookups): add the remaining columns from the ERD.
+    // Columns
+    public UserRole Role { get; set; }
+    public string GroupName { get; set; } = null!;
+    public string Label { get; set; } = null!;
+    public string? Description { get; set; }
+    public bool DefaultOn { get; set; }
+    public bool IsLocked { get; set; }
+    public bool IsEnabled { get; set; }
+    public DateTime? UpdatedAt { get; set; }
 
     // Navigation properties
     public UniversityAdmin? UpdatedByAdmin { get; set; }

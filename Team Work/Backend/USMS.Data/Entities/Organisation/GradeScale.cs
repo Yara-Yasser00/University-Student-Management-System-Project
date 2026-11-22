@@ -7,5 +7,7 @@ public class GradeScale
     // Primary key
     public string Letter { get; set; } = null!;
 
-    // TODO Group 1 (Organisation & Lookups): add the remaining columns from the ERD.
+    // Columns
+    public byte MinTotal { get; set; }
+    public decimal GradePoints { get; set; }
 }

@@ -14,6 +14,12 @@ public class CollegeAdminConfiguration : IEntityTypeConfiguration<CollegeAdmin>
         // String foreign keys must have the same length as the key they point to.
         builder.Property(e => e.CollegeCode).HasMaxLength(10);
 
+        // Unique indexes: only one active admin per college.
+        // Inactive admins of the same college are allowed (the filter skips them).
+        builder.HasIndex(e => e.CollegeCode)
+               .IsUnique()
+               .HasFilter("[IsActive] = 1");
+
         // Relationships (from the ERD). Records are never deleted (status changes only),
         // so every foreign key uses Restrict. This also avoids multiple cascade paths.
         // R10: CollegeAdmin.CollegeCode → College
@@ -21,8 +27,5 @@ public class CollegeAdminConfiguration : IEntityTypeConfiguration<CollegeAdmin>
                .WithMany(p => p.CollegeAdmins)
                .HasForeignKey(e => e.CollegeCode)
                .OnDelete(DeleteBehavior.Restrict);
-
-        // TODO Group 2 (People): remaining columns (types, lengths, NULL),
-        // unique indexes, defaults and seed data, as in the ERD.
     }
 }

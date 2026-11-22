@@ -1,3 +1,5 @@
+using USMS.Data.Enums;
+
 namespace USMS.Data.Entities;
 
 // Owner: Group 3 (Catalogue & Schedule)
@@ -10,7 +12,13 @@ public class Course
     // Foreign keys
     public string CollegeCode { get; set; } = null!;
 
-    // TODO Group 3 (Catalogue & Schedule): add the remaining columns from the ERD.
+    // Columns
+    public string Code { get; set; } = null!;
+    public string Name { get; set; } = null!;
+    public AcademicLevel Level { get; set; }
+    public byte CreditHours { get; set; }
+    public ActivityType ActivityType { get; set; }
+    public EntityStatus Status { get; set; }
 
     // Navigation properties
     public College College { get; set; } = null!;

@@ -1,3 +1,5 @@
+using USMS.Data.Enums;
+
 namespace USMS.Data.Entities;
 
 // Owner: Group 3 (Catalogue & Schedule)
@@ -12,7 +14,12 @@ public class ClassGroup
     public int TAStaffID { get; set; }
     public string RoomCode { get; set; } = null!;
 
-    // TODO Group 3 (Catalogue & Schedule): add the remaining columns from the ERD.
+    // Columns
+    public byte GroupNumber { get; set; }
+    public GroupType GroupType { get; set; }
+    public WeekDay Day { get; set; }
+    public TimeOnly StartTime { get; set; }
+    public short SeatCapacity { get; set; }
 
     // Navigation properties
     public CourseOffering Offering { get; set; } = null!;

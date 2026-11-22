@@ -13,7 +13,7 @@ public class GradeScaleConfiguration : IEntityTypeConfiguration<GradeScale>
         builder.HasKey(e => e.Letter);
         builder.Property(e => e.Letter).HasMaxLength(2);
 
-        // TODO Group 1 (Organisation & Lookups): remaining columns (types, lengths, NULL),
-        // unique indexes, defaults and seed data, as in the ERD.
+        // Columns
+        builder.Property(e => e.GradePoints).HasPrecision(3, 2);
     }
 }

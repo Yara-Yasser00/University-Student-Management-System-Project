@@ -1,3 +1,5 @@
+using USMS.Data.Enums;
+
 namespace USMS.Data.Entities;
 
 // Owner: Group 1 (Organisation & Lookups)
@@ -10,7 +12,10 @@ public class Room
     // Foreign keys
     public string? CollegeCode { get; set; }
 
-    // TODO Group 1 (Organisation & Lookups): add the remaining columns from the ERD.
+    // Columns
+    public string Building { get; set; } = null!;
+    public RoomType Type { get; set; }
+    public short Capacity { get; set; }
 
     // Navigation properties
     public College? College { get; set; }

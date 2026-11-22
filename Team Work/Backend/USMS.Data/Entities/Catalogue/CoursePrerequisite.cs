@@ -8,8 +8,6 @@ public class CoursePrerequisite
     public int CourseID { get; set; }
     public int PrerequisiteCourseID { get; set; }
 
-    // TODO Group 3 (Catalogue & Schedule): add the remaining columns from the ERD.
-
     // Navigation properties
     public Course Course { get; set; } = null!;
     public Course PrerequisiteCourse { get; set; } = null!;

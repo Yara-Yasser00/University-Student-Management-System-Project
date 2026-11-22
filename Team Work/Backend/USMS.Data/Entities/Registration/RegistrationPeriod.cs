@@ -1,3 +1,5 @@
+using USMS.Data.Enums;
+
 namespace USMS.Data.Entities;
 
 // Owner: Group 4 (Registration)
@@ -8,7 +10,10 @@ public class RegistrationPeriod
     public string CollegeCode { get; set; } = null!;
     public int TermID { get; set; }
 
-    // TODO Group 4 (Registration): add the remaining columns from the ERD.
+    // Columns
+    public DateTime RegistrationOpens { get; set; }
+    public DateTime RegistrationCloses { get; set; }
+    public ManualOverride ManualOverride { get; set; }
 
     // Navigation properties
     public College College { get; set; } = null!;

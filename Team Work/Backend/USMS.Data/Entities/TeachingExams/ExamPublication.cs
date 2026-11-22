@@ -11,7 +11,9 @@ public class ExamPublication
     public int TermID { get; set; }
     public ExamType ExamType { get; set; }
 
-    // TODO Group 5 (Teaching & Exams): add the remaining columns from the ERD.
+    // Columns
+    public PublicationStatus Status { get; set; }
+    public DateTime? PublishedAt { get; set; }
 
     // Navigation properties
     public College College { get; set; } = null!;

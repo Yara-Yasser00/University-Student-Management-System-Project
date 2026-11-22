@@ -8,7 +8,8 @@ public class ExamSeat
     public int ExamID { get; set; }
     public int EnrollmentID { get; set; }
 
-    // TODO Group 5 (Teaching & Exams): add the remaining columns from the ERD.
+    // Columns
+    public string SeatNumber { get; set; } = null!;
 
     // Navigation properties
     public Exam Exam { get; set; } = null!;

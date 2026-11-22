@@ -1,3 +1,5 @@
+using USMS.Data.Enums;
+
 namespace USMS.Data.Entities;
 
 // Owner: Group 3 (Catalogue & Schedule)
@@ -15,7 +17,14 @@ public class CourseOffering
     public int? ApprovedByAdminID { get; set; }
     public int? PublishedByAdminID { get; set; }
 
-    // TODO Group 3 (Catalogue & Schedule): add the remaining columns from the ERD.
+    // Columns
+    public WeekDay LectureDay { get; set; }
+    public TimeOnly LectureStart { get; set; }
+    public ResultStatus ResultStatus { get; set; }
+    public DateTime? SubmittedAt { get; set; }
+    public string? ReturnReason { get; set; }
+    public DateTime? ApprovedAt { get; set; }
+    public DateTime? PublishedAt { get; set; }
 
     // Navigation properties
     public Course Course { get; set; } = null!;

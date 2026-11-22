@@ -10,7 +10,11 @@ public class Notification
     // Foreign keys
     public string LoginID { get; set; } = null!;
 
-    // TODO Group 4 (Registration): add the remaining columns from the ERD.
+    // Columns
+    public string Title { get; set; } = null!;
+    public string Body { get; set; } = null!;
+    public bool IsRead { get; set; }
+    public DateTime CreatedAt { get; set; }
 
     // Navigation properties
     public UserAccount UserAccount { get; set; } = null!;

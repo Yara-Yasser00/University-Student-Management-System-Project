@@ -11,7 +11,9 @@ public class SchedulePublication
     public int TermID { get; set; }
     public AcademicLevel Level { get; set; }
 
-    // TODO Group 3 (Catalogue & Schedule): add the remaining columns from the ERD.
+    // Columns
+    public PublicationStatus Status { get; set; }
+    public DateTime? PublishedAt { get; set; }
 
     // Navigation properties
     public College College { get; set; } = null!;

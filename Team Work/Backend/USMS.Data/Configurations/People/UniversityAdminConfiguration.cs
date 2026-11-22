@@ -9,9 +9,7 @@ public class UniversityAdminConfiguration : IEntityTypeConfiguration<UniversityA
 {
     public void Configure(EntityTypeBuilder<UniversityAdmin> builder)
     {
+        // The ERD gives this table only its key (AdminID), so there is nothing else to configure.
         builder.ToTable("UniversityAdmin", t => t.Property(e => e.PersonID).HasColumnName("AdminID"));
-
-        // TODO Group 2 (People): remaining columns (types, lengths, NULL),
-        // unique indexes, defaults and seed data, as in the ERD.
     }
 }

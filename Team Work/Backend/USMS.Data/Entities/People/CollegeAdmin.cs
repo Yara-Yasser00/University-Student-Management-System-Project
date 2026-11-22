@@ -2,6 +2,7 @@ namespace USMS.Data.Entities;
 
 // Owner: Group 2 (People)
 // Table: CollegeAdmin — see "USMS - Database Design Documentation", section 5.
+// Manages one college; only one active admin per college.
 public class CollegeAdmin : Admin
 {
     // Primary key is inherited from Person (PersonID).
@@ -10,7 +11,9 @@ public class CollegeAdmin : Admin
     // Foreign keys
     public string CollegeCode { get; set; } = null!;
 
-    // TODO Group 2 (People): add the remaining columns from the ERD.
+    // Columns
+    public bool IsActive { get; set; }
+    public DateOnly AssignedAt { get; set; }
 
     // Navigation properties
     public College College { get; set; } = null!;

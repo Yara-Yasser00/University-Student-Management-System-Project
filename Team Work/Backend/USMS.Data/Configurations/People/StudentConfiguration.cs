@@ -14,6 +14,18 @@ public class StudentConfiguration : IEntityTypeConfiguration<Student>
         // String foreign keys must have the same length as the key they point to.
         builder.Property(e => e.CollegeCode).HasMaxLength(10);
 
+        // Columns
+        builder.Property(e => e.Level).HasConversion<string>().HasMaxLength(10);            // AcademicLevel
+        builder.Property(e => e.AcademicStatus).HasConversion<string>().HasMaxLength(15);   // AcademicStatus
+        builder.Property(e => e.GuardianName).HasMaxLength(150);
+        builder.Property(e => e.GuardianOccupation).HasMaxLength(100);
+        builder.Property(e => e.GuardianMobile).HasMaxLength(20);
+        builder.Property(e => e.City).HasMaxLength(50);
+        builder.Property(e => e.HomePhone).HasMaxLength(20);
+        builder.Property(e => e.CertificateType).HasMaxLength(50);
+        builder.Property(e => e.SchoolName).HasMaxLength(150);
+        builder.Property(e => e.PreviousScore).HasPrecision(5, 2);
+
         // Relationships (from the ERD). Records are never deleted (status changes only),
         // so every foreign key uses Restrict. This also avoids multiple cascade paths.
         // R39 (new): College enrolls Student — Student.CollegeCode → College
@@ -33,8 +45,5 @@ public class StudentConfiguration : IEntityTypeConfiguration<Student>
                .WithMany(p => p.AdvisedStudents)
                .HasForeignKey(e => e.AdvisorStaffID)
                .OnDelete(DeleteBehavior.Restrict);
-
-        // TODO Group 2 (People): remaining columns (types, lengths, NULL),
-        // unique indexes, defaults and seed data, as in the ERD.
     }
 }
