@@ -16,6 +16,7 @@ public class UsmsDbContext : DbContext
     public DbSet<Room> Rooms => Set<Room>();
     public DbSet<GradeScale> GradeScales => Set<GradeScale>();
     public DbSet<Permission> Permissions => Set<Permission>();
+    public DbSet<PermissionChangeLog> PermissionChangeLogs => Set<PermissionChangeLog>();
 
     // Group 2: People
     public DbSet<Person> People => Set<Person>();
@@ -40,6 +41,7 @@ public class UsmsDbContext : DbContext
     public DbSet<RegistrationForm> RegistrationForms => Set<RegistrationForm>();
     public DbSet<Enrollment> Enrollments => Set<Enrollment>();
     public DbSet<Notification> Notifications => Set<Notification>();
+    public DbSet<GradeCorrection> GradeCorrections => Set<GradeCorrection>();
 
     // Group 5: Teaching & Exams
     public DbSet<ClassSession> ClassSessions => Set<ClassSession>();

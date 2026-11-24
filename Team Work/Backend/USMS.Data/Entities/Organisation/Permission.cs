@@ -24,4 +24,5 @@ public class Permission
 
     // Navigation properties
     public UniversityAdmin? UpdatedByAdmin { get; set; }
+    public ICollection<PermissionChangeLog> ChangeLogs { get; set; } = new List<PermissionChangeLog>();
 }

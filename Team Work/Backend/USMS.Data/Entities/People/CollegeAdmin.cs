@@ -19,4 +19,5 @@ public class CollegeAdmin : Admin
     public College College { get; set; } = null!;
     public ICollection<CourseOffering> ApprovedOfferings { get; set; } = new List<CourseOffering>();
     public ICollection<CourseOffering> PublishedOfferings { get; set; } = new List<CourseOffering>();
+    public ICollection<GradeCorrection> GradeCorrections { get; set; } = new List<GradeCorrection>();
 }

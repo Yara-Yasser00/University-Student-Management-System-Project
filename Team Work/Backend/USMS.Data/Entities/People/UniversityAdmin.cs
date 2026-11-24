@@ -10,4 +10,5 @@ public class UniversityAdmin : Admin
 
     // Navigation properties
     public ICollection<Permission> UpdatedPermissions { get; set; } = new List<Permission>();
+    public ICollection<PermissionChangeLog> PermissionChanges { get; set; } = new List<PermissionChangeLog>();
 }

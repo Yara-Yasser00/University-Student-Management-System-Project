@@ -28,4 +28,5 @@ public class Enrollment
     public ClassGroup? Group { get; set; }
     public ICollection<Attendance> Attendances { get; set; } = new List<Attendance>();
     public ICollection<ExamSeat> ExamSeats { get; set; } = new List<ExamSeat>();
+    public ICollection<GradeCorrection> GradeCorrections { get; set; } = new List<GradeCorrection>();
 }
