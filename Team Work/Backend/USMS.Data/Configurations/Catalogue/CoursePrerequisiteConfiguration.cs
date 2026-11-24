@@ -9,7 +9,10 @@ public class CoursePrerequisiteConfiguration : IEntityTypeConfiguration<CoursePr
 {
     public void Configure(EntityTypeBuilder<CoursePrerequisite> builder)
     {
-        builder.ToTable("CoursePrerequisite");
+        // Check constraint (team decision, 24 November 2026): a course is not its own prerequisite.
+        builder.ToTable("CoursePrerequisite", t => t.HasCheckConstraint(
+            "CK_CoursePrerequisite_NotSelf",
+            "[CourseID] <> [PrerequisiteCourseID]"));
         builder.HasKey(e => new { e.CourseID, e.PrerequisiteCourseID });
 
         // Relationships (from the ERD). Records are never deleted (status changes only),

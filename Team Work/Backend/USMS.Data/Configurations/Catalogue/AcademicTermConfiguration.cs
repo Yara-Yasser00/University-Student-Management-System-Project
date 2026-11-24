@@ -21,5 +21,8 @@ public class AcademicTermConfiguration : IEntityTypeConfiguration<AcademicTerm>
         builder.HasIndex(e => e.IsCurrent)
                .IsUnique()
                .HasFilter("[IsCurrent] = 1");
+
+        // Unique index (team decision, 24 November 2026): the same term is not added twice in one year.
+        builder.HasIndex(e => new { e.AcademicYear, e.TermName }).IsUnique();
     }
 }

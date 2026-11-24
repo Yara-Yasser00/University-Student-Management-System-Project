@@ -9,7 +9,10 @@ public class RegistrationFormConfiguration : IEntityTypeConfiguration<Registrati
 {
     public void Configure(EntityTypeBuilder<RegistrationForm> builder)
     {
-        builder.ToTable("RegistrationForm");
+        // Check constraint (team decision, 24 November 2026): a change request must have a note.
+        builder.ToTable("RegistrationForm", t => t.HasCheckConstraint(
+            "CK_RegistrationForm_AdvisorNote",
+            "[Decision] <> N'ChangesRequested' OR ([AdvisorNote] IS NOT NULL AND LEN([AdvisorNote]) > 0)"));
         builder.HasKey(e => e.FormID);
 
         // Columns

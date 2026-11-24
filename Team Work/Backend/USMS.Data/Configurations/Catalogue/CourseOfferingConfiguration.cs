@@ -9,7 +9,10 @@ public class CourseOfferingConfiguration : IEntityTypeConfiguration<CourseOfferi
 {
     public void Configure(EntityTypeBuilder<CourseOffering> builder)
     {
-        builder.ToTable("CourseOffering");
+        // Check constraint (team decision, 24 November 2026): a returned result must have a reason.
+        builder.ToTable("CourseOffering", t => t.HasCheckConstraint(
+            "CK_CourseOffering_ReturnReason",
+            "[ResultStatus] <> N'Returned' OR ([ReturnReason] IS NOT NULL AND LEN([ReturnReason]) > 0)"));
         builder.HasKey(e => e.OfferingID);
 
         // String foreign keys must have the same length as the key they point to.
