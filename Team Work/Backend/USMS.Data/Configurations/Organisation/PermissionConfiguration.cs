@@ -29,7 +29,8 @@ public class PermissionConfiguration : IEntityTypeConfiguration<Permission>
                .OnDelete(DeleteBehavior.Restrict);
 
         // Seed data (fixed lookup values, agreed by the team)
-        // The 31 permissions of the UI-UX prototype (permissions.ts). IsEnabled starts equal to DefaultOn.
+        // The 30 permissions of the UI-UX prototype (permissions.ts). IsEnabled starts equal to DefaultOn.
+        // student.dropCourses was removed on 25 November 2026 (Add / Drop removed).
         // The "requires" link between permissions has no column in the ERD; the API / UI handles it.
         builder.HasData(
             new Permission
@@ -65,19 +66,6 @@ public class PermissionConfiguration : IEntityTypeConfiguration<Permission>
                 GroupName = "Registration",
                 Label = "Register courses",
                 Description = "Add and remove courses while the registration period is open.",
-                DefaultOn = true,
-                IsLocked = false,
-                IsEnabled = true,
-                UpdatedByAdminID = null,
-                UpdatedAt = null
-            },
-            new Permission
-            {
-                PermissionKey = "student.dropCourses",
-                Role = UserRole.Student,
-                GroupName = "Registration",
-                Label = "Drop courses during Add / Drop",
-                Description = "Remove registered courses during the Add / Drop window.",
                 DefaultOn = true,
                 IsLocked = false,
                 IsEnabled = true,
@@ -350,7 +338,7 @@ public class PermissionConfiguration : IEntityTypeConfiguration<Permission>
                 Role = UserRole.CollegeAdmin,
                 GroupName = "Scheduling",
                 Label = "Control registration period",
-                Description = "Set registration and Add / Drop dates.",
+                Description = "Set registration dates.",
                 DefaultOn = true,
                 IsLocked = false,
                 IsEnabled = true,
